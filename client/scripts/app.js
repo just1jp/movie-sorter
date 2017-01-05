@@ -22,7 +22,7 @@ var Movies = Backbone.Collection.extend({
   model: Movie,
 
   initialize: function() {
-    // your code here
+    //code goes here
   },
 
   comparator: 'title',
@@ -30,6 +30,7 @@ var Movies = Backbone.Collection.extend({
   sortByField: function(field) {
     this.comparator = field;
     this.sort();
+   // this.trigger('sortByField');
   }
 
 });
@@ -87,7 +88,8 @@ var MovieView = Backbone.View.extend({
 var MoviesView = Backbone.View.extend({
 
   initialize: function() {
-    // your code here
+    // this.collection.on('sortByField', this.render, this);
+    this.listenTo(this.collection, 'sort', this.render);
   },
 
   render: function() {
